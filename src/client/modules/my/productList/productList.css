@@ -1,0 +1,78 @@
+.center {
+    text-align: center;
+}
+
+.searchbar {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card {
+    max-width: 250px;
+}
+
+.slds-grid {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.slds-wrap{
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.slds-col {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.slds-input {
+    background-color: white;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    width: 100%;
+    transition: border 0.1s linear, background-color 0.1s linear;
+    -webkit-appearance: none;
+    display: inline-block;
+    padding: 0 1rem 0 0.75rem;
+    line-height: 1.875rem;
+    min-height: calc(1.875rem + (1px * 2));
+    margin-top: 10px;
+}
+
+.slds-button {
+    position: relative;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0;
+    background: transparent;
+    background-clip: border-box;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    line-height: 1.875rem;
+    text-decoration: none;
+    color: #0070d2;
+    -webkit-appearance: none;
+    white-space: normal;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.slds-button_brand,
+.slds-button--brand {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    vertical-align: middle;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border: 1px solid #dddbda;
+    transition: border 0.15s linear;
+    background-color: #0070d2;
+    border-color: #0070d2;
+    color: white;
+}

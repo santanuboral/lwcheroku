@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-card slds-p-around_x-small">
+        <div class="content">
+            <div class="searchbar">
+                Search by Name
+                <input class="slds-input" type="search" onchange={handleSearchKeyChange}/>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <template for:each={products} for:item="product">
+                    <div class="slds-col" padding="around-small"  key={product.id}>
+                        <my-product-item-tile product={product} onqtyupdate={handleQuantityChange}></my-product-item-tile>
+                    </div>
+                </template>
+            </div>
+            <div class="center" style="margin-top: 15px;">
+                <button class="slds-button slds-button_brand" label="Submit Order" title="Submit Order" onclick={handleClick}>
+                    Submit Order
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

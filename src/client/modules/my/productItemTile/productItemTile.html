@@ -1,0 +1,19 @@
+<template>
+    <div class="content">
+        <div class="image">
+            <img src={product.picture} class="product slds-align_absolute-center" alt="Product picture" />
+        </div>
+        <div class="center">
+            <p class="title">{product.name}</p>
+            <p>
+                Price:&nbsp;{product.price}                
+            </p>
+            <p>
+                    Quantity Needed:&nbsp;
+                <input type="number" class="slds-input quantity-width" label="Quantity Needed:" name="quantity" max-length="3" 
+                    onchange={handleQuantityChange}/>
+                
+            </p>
+        </div>
+    </div>
+</template>
