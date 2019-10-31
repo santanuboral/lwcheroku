@@ -1,38 +1,24 @@
 /* eslint-disable no-alert */
-import { LightningElement,  track, api} from 'lwc';
-
-
+import { LightningElement, track, api } from 'lwc';
 
 export default class ProductList extends LightningElement {
-
     @track allProducts = [];
     @track products = [];
 
     @api recordId;
 
-    products = this.allProducts = [
-        {
-            id : 1,
-            name: 'Product 1',
-            price: '$350',
-            picture: 'https://www.ikea.com/PIAimages/0631750_PE695177_S5.JPG?f=xxs'
-        },
-        {
-            id : 2,
-            name: 'Product 2',
-            price: '$350',
-            picture: 'https://www.ikea.com/PIAimages/0631750_PE695177_S5.JPG?f=xxs'
-        },
-        {
-            id : 3,
-            name: 'Product 3',
-            price: '$350',
-            picture: 'https://www.ikea.com/PIAimages/0631750_PE695177_S5.JPG?f=xxs'
-        }
-    ];
-    
+    connectedCallback() {
+        fetch('data/products')
+            .then(response => {
+                return response.json();
+            })
+            .then(products => {
+                this.products = this.allProducts = products;
+            });
+    }
+
     //on change of Quantity, append that in the correct array element
-    handleQuantityChange(event){
+    handleQuantityChange(event) {
         const productId = event.detail.productId;
         const qty = event.detail.quantity;
         if (qty > 0) {
@@ -45,13 +31,13 @@ export default class ProductList extends LightningElement {
     }
 
     //this will search on product name based on search input
-    handleSearchKeyChange(event){
-        const searchKey = event.target.value.toLowerCase();        
-        this.products = this.allProducts.filter(
-            product => product.name.toLowerCase().includes(searchKey)
+    handleSearchKeyChange(event) {
+        const searchKey = event.target.value.toLowerCase();
+        this.products = this.allProducts.filter(product =>
+            product.name.toLowerCase().includes(searchKey)
         );
     }
-    
+
     /*
     handleClick(){
         //now call apex controller to insert the order items.
@@ -67,4 +53,31 @@ export default class ProductList extends LightningElement {
         
     }
     */
+
+    handleClick() {
+        let emailaddress = this.template.querySelector('.emailaddress').value;
+        let obj = {
+            email: emailaddress,
+            productList: JSON.stringify(this.allProducts)
+        };
+        if (emailaddress.length === 0) {
+            // eslint-disable-next-line no-alert
+            alert('Please enter email address');
+        } else {
+            fetch('data/placeOrder', {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(obj), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    // eslint-disable-next-line no-alert
+                    alert(data);
+                });
+        }
+    }
 }
